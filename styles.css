@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Alagard';
+  src: url('./alagard.ttf') format('truetype');
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+header img {
+  max-width: 200px;
+  max-height: 200px;
+  margin-right: 20px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+}
+
+header form {
+  display: flex;
+  align-items: center;
+}
+
+header input[type="email"] {
+  width: 200px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  text-align: center;
+  font-family: 'Alagard';
+}
+
+label, input[type="submit"] {
+  width: 33%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+input[type="email"] {
+  width: 33%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
