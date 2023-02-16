@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Alagard';
-  src: url('./alagard.ttf') format('truetype');
+  src: url('./fonts/alagard.ttf') format('truetype');
 }
 
 header {
@@ -8,52 +8,66 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  background-color:antiquewhite
 }
 
 header img {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 150px;
+  max-height: 150px;
   margin-right: 20px;
 }
 
 header nav {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 header form {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 header input[type="email"] {
   width: 200px;
   padding: 10px;
-  margin-right: 10px;
   border: 1px solid #ccc;
+  margin-right: 10px;
 }
 
-form {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+form input {
+  font-family: 'Roboto';
+  font-weight: bold;
+}
+
+header input[type="submit"] {
+  width: 100px;
+  padding: 10px;
+  background-color: yellow;
+}
+
+h1 {
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 0px;
+}
+
+h2 {
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-size: large;
+  margin-bottom: 0px;
 }
 
 p {
-  text-align: center;
+  text-align: left;
   font-family: 'Alagard';
 }
 
-label, input[type="submit"] {
-  width: 33%;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-input[type="email"] {
-  width: 33%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
+.container {
+  margin: 20px
 }
