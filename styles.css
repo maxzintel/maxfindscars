@@ -34,6 +34,7 @@ header input[type="email"] {
   padding: 10px;
   border: 1px solid #ccc;
   margin-right: 10px;
+  font-size: small;
 }
 
 form input {
@@ -45,6 +46,7 @@ header input[type="submit"] {
   width: 100px;
   padding: 10px;
   background-color: yellow;
+  font-size: small;
 }
 
 h1 {
@@ -65,9 +67,74 @@ h2 {
 
 p {
   text-align: left;
-  font-family: 'Alagard';
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-size: medium;
+  margin-left: 20px
 }
 
 .container {
   margin: 20px
+}
+
+.half-container {
+  width: 45%;
+  display: inline-block;
+  margin: 20px;
+  vertical-align: top;
+  background-color: antiquewhite;
+  height: 300px;
+}
+
+.half-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.half-container input[type="email"] {
+  margin-top: 10%;
+  width: 75%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  font-size: large;
+}
+
+.half-container input[type="submit"] {
+  width: 50%;
+  padding: 10px;
+  background-color: yellow;
+  font-size: x-large;
+}
+
+.half-container img {
+  width: 25%;
+  height: 25%;
+  object-fit: contain;
+  margin: 10px;
+}
+
+.fine-print {
+  font-size: smaller;
+}
+
+.footer-container {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: antiquewhite;
+}
+
+.footer-container p {
+  margin-right: auto;
+}
+
+.footer-container img {
+  height: 25px;
+  margin: 0 5px;
+  display: flex;
+  justify-content: flex-end;
 }
