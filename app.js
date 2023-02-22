@@ -2,6 +2,7 @@ const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.post('/signup', (req, res) => {
 
   request(options, (err, response, body) => {
     if(err) {
+      console.log(err);
       res.redirect('/fail.html')
     } else {
       if(response.statusCode === 200) {
