@@ -70,8 +70,9 @@ p {
   font-family: 'Roboto', sans-serif;
   font-style: italic;
   font-size: medium;
-  margin-left: 20px
+  /* margin-left: 20px */
 }
+
 
 .container {
   margin: 20px
@@ -84,6 +85,10 @@ p {
   vertical-align: top;
   background-color: antiquewhite;
   height: 300px;
+}
+
+.half-container p {
+  margin-left: 20px
 }
 
 .half-container form {
