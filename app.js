@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Signup Route
-// https://hey.us11.list-manage.com/subscribe/post-json?u=ebda97567f9c04aacd51a54c1&amp;id=0426556e3c&amp;f_id=00c999e0f0
 app.post('/signup', (req, res) => {
   const { email } = req.body;
 
@@ -23,44 +22,69 @@ app.post('/signup', (req, res) => {
     return
   }
 
-  // Construct request data
-  // via https://mailchimp.com/developer/marketing/api/list-activity/
-  const data = {
-    members: [
-      {
-        email_address: email,
-        status: 'subscribed'
-      }
-    ]
-  }
-
-  // turn data into a string and call it postData
-  const postData = JSON.stringify(data);
-
-  // server prefix = data center. If in the US it looks like us1 or us12 or similar
   const options = {
-    url: `https://${process.env.dataCenter}.api.mailchimp.com/3.0/lists/${process.env.listID}`,
     method: 'POST',
-    headers: {
-      Authorization: `auth ${process.env.apiKey}`
+    url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/subscriptions`,
+    headers: {'Content-Type': 'application/json', Authorization: `Bearer ${process.env.beehiivKey}`},
+    body: {
+      publication_id: `${process.env.beehiivPubID}`,
+      email: email,
+      reactivate_existing: false,
+      send_welcome_email: false,
+      utm_source: 'website',
+      utm_campaign: 'maxfindscars',
+      utm_medium: 'organic',
     },
-    body: postData
-  }
+    json: true
+  };
 
-  request(options, (err, response, body) => {
-    if(err) {
-      console.log(err);
-      res.redirect('/fail.html')
+  request(options, (error, response, body) => {
+    if (error) {
+      console.log(error);
+      console.log('Request Failed with Above Error.');
+      res.redirect('/fail.html');
     } else {
-      if(response.statusCode === 200) {
-        console.log(response);
-        res.redirect('/success.html')
+      if(body.data.status == 'validating') {
+        console.log('Your email address is validating...');
+        res.redirect('/success.html');
+        // res.redirect loading...
+      } else if(body.data.status == 'active') {
+        console.log('Your subscription is active! You will be receiving emails soon!');
+        res.redirect('/success.html');
       } else {
-        res.redirect('/fail.html')
+        res.redirect('/fail.html');
+        console.log('Request Failed for an Unknown Reason.')
       }
+      console.log(body);
     }
   });
 });
+
+function checkStatus(id, res) {
+  // make an API request to check the subscription status
+  request(`https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/subscriptions/${id}`, (error, response, body) => {
+    if (error) {
+      console.log(error);
+      console.log('Request Failed with Above Error.');
+      res.redirect('/fail.html');
+    } else {
+      const status = JSON.parse(body).data.status;
+      if (status === 'validating') {
+        // If the status is still 'validating', wait 2 seconds and make another request
+        setTimeout(() => {
+          checkStatus(id, res);
+        }, 2000);
+      } else if (status === 'active') {
+        // If the status is 'active', redirect the user to the success page
+        console.log('Your subscription is active! You will be receiving emails soon!');
+        res.redirect('/success.html');
+      } else {
+        console.log('Request Failed for an Unknown Reason.');
+        res.redirect('/fail.html');
+      }
+    }
+  });
+}
 
 const PORT = process.env.PORT || 5000
 
