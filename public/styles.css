@@ -46,6 +46,9 @@ header input[type="submit"] {
   width: 100px;
   padding: 10px;
   background-color: yellow;
+  color: black;
+  border-radius: 1px;
+  border-color: black;
   font-size: small;
 }
 
@@ -111,6 +114,9 @@ p {
   width: 50%;
   padding: 10px;
   background-color: yellow;
+  color: black;
+  border-radius: 1px;
+  border-color: black;
   font-size: x-large;
 }
 
