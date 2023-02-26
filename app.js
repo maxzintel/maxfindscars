@@ -52,7 +52,6 @@ app.post('/signup', (req, res) => {
         console.log('Your email address is validating...');
         checkStatus(body.data.id, res);
       } else if (body.data.status === 'active') {
-        console.log('Your subscription is active! You will be receiving emails soon!');
         res.redirect('/success.html');
       } else {
         res.redirect('/fail.html');
@@ -78,7 +77,6 @@ function checkStatus(id, res) {
   request(options, (error, response, body) => {
     if (error) {
       console.log(error);
-      console.log('Request Failed with Above Error.');
       res.redirect('/fail.html');
     } else if (body && body.data && body.data.status) {
       const status = body.data.status;
@@ -89,7 +87,6 @@ function checkStatus(id, res) {
         }, 2000);
       } else if (status === 'active') {
         // If the status is 'active', redirect the user to the success page
-        console.log('Your subscription is active! You will be receiving emails soon!');
         res.redirect('/success.html');
       } else {
         console.log('Request Failed for an Unknown Reason.');
