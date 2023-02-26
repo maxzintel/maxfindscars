@@ -46,8 +46,7 @@ app.post('/signup', (req, res) => {
     } else {
       if(body.data.status == 'validating') {
         console.log('Your email address is validating...');
-        res.redirect('/success.html');
-        // res.redirect loading...
+        checkStatus(body.data.id, res);
       } else if(body.data.status == 'active') {
         console.log('Your subscription is active! You will be receiving emails soon!');
         res.redirect('/success.html');
@@ -61,8 +60,15 @@ app.post('/signup', (req, res) => {
 });
 
 function checkStatus(id, res) {
+  const options = {
+    method: 'GET',
+    url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/subscriptions/${id}`,
+    headers: {'Content-Type': 'application/json', Authorization: `Bearer ${process.env.beehiivKey}`}
+  };
+
   // make an API request to check the subscription status
-  request(`https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/subscriptions/${id}`, (error, response, body) => {
+  request(options, (error, response, body) => {
+    console.log(body);
     if (error) {
       console.log(error);
       console.log('Request Failed with Above Error.');
