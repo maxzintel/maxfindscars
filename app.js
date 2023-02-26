@@ -7,60 +7,94 @@ require('dotenv').config();
 const app = express();
 
 // Bodyparser Middleware for signup data parsing
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+const options = {
+  method: 'POST',
+  url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/subscriptions`,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${process.env.beehiivKey}`,
+  },
+  json: true,
+};
+
 // Signup Route
-// https://hey.us11.list-manage.com/subscribe/post-json?u=ebda97567f9c04aacd51a54c1&amp;id=0426556e3c&amp;f_id=00c999e0f0
 app.post('/signup', (req, res) => {
   const { email } = req.body;
 
   // Make sure fields are filled.
-  if(!email) {
+  if (!email) {
     res.redirect('/fail.html');
-    return
+    return;
   }
 
-  // Construct request data
-  // via https://mailchimp.com/developer/marketing/api/list-activity/
-  const data = {
-    members: [
-      {
-        email_address: email,
-        status: 'subscribed'
-      }
-    ]
-  }
+  options.body = {
+    publication_id: `${process.env.beehiivPubID}`,
+    email: email,
+    reactivate_existing: false,
+    send_welcome_email: false,
+    utm_source: 'website',
+    utm_campaign: 'maxfindscars',
+    utm_medium: 'organic',
+  };
 
-  // turn data into a string and call it postData
-  const postData = JSON.stringify(data);
-
-  // server prefix = data center. If in the US it looks like us1 or us12 or similar
-  const options = {
-    url: `https://${process.env.dataCenter}.api.mailchimp.com/3.0/lists/${process.env.listID}`,
-    method: 'POST',
-    headers: {
-      Authorization: `auth ${process.env.apiKey}`
-    },
-    body: postData
-  }
-
-  request(options, (err, response, body) => {
-    if(err) {
-      console.log(err);
-      res.redirect('/fail.html')
+  request(options, (error, response, body) => {
+    if (error) {
+      console.log(error);
+      console.log('Request Failed with Above Error.');
+      res.redirect('/fail.html');
     } else {
-      if(response.statusCode === 200) {
-        console.log(response);
-        res.redirect('/success.html')
+      if (body.data.status === 'validating') {
+        console.log('Your email address is validating...');
+        checkStatus(body.data.id, res);
+      } else if (body.data.status === 'active') {
+        res.redirect('/success.html');
       } else {
-        res.redirect('/fail.html')
+        res.redirect('/fail.html');
+        console.log('Request Failed for an Unknown Reason.');
       }
+      console.log(body);
     }
   });
 });
+
+function checkStatus(id, res) {
+  const options = {
+    method: 'GET',
+    url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/subscriptions/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.beehiivKey}`,
+    },
+    json: true,
+  };
+
+  // make an API request to check the subscription status
+  request(options, (error, response, body) => {
+    if (error) {
+      console.log(error);
+      res.redirect('/fail.html');
+    } else if (body && body.data && body.data.status) {
+      const status = body.data.status;
+      if (status === 'validating') {
+        // If the status is still 'validating', wait 2 seconds and make another request
+        setTimeout(() => {
+          checkStatus(id, res);
+        }, 2000);
+      } else if (status === 'active') {
+        // If the status is 'active', redirect the user to the success page
+        res.redirect('/success.html');
+      } else {
+        console.log('Request Failed for an Unknown Reason.');
+        res.redirect('/fail.html');
+      }
+    }
+  });
+}
 
 const PORT = process.env.PORT || 5000
 
