@@ -81,8 +81,12 @@ p {
   margin: 20px
 }
 
+.container-div {
+  display: flex;
+  justify-content: space-around;
+}
 .half-container {
-  width: 45%;
+  width: 50%;
   display: inline-block;
   margin: 20px;
   vertical-align: top;
