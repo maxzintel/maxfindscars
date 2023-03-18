@@ -18,11 +18,12 @@
           <img class="h-36 w-auto object-contain" src="./logos/logo.png" alt="Logo">
         </a>
       </div>
-      <form class="font-bold">
+      <form class="font-bold hidden md:block">
         <input type="email" id="email" name="email" placeholder="Enter email address..." class="p-3 border">
         <input type="submit" value="SUBSCRIBE" class="p-3 outline-2 border-black border-2 bg-yellow">
       </form>
-  </header>
+    </nav>
+  </header>  
   <main>
     <div class="container border-black p-5 m-2 mt-0">
       <h1 class="left-0 font-bold text-3xl">
@@ -36,14 +37,14 @@
         Join and get our 5 minute newsletter a few times a week showing off the most interesting cars for sale online!
       </p>
     </div>
-    <div class="flex justify-around w-full">
-      <div class="m-5 bg-antiquewhite w-1/2 h-72 flex items-center justify-center">
+    <div class="flex flex-col md:flex-row justify-around w-full">
+      <div class="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex items-center justify-center">
         <form class="font-bold flex flex-col items-center px-4 w-full">
-          <input type="email" id="email" name="email" placeholder="Enter email address..." class="p-3 border mb-3 text-lg w-3/4 lg:w-3/4">
-          <input type="submit" value="SUBSCRIBE" class="text-lg p-3 outline-2 border-black border-2 w-full lg:w-1/2 bg-yellow">
+          <input type="email" id="email" name="email" placeholder="Enter email address..." class="p-3 border mb-3 text-lg w-full md:w-3/4">
+          <input type="submit" value="SUBSCRIBE" class="text-lg p-3 outline-2 border-black border-2 w-full md:w-1/2 bg-yellow">
         </form>
       </div>
-      <div class="m-5 w-1/2 bg-antiquewhite h-72 flex flex-col items-center justify-center">
+      <div class="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex flex-col items-center justify-center">
         <p class="text-base mb-4 mt-4 font-bold">
           📚 READ BY EXECUTIVES OF MANY REPUTABLE COMPANIES*
         </p>
@@ -60,6 +61,7 @@
         </p> 
       </div>      
     </div>
+    
     <div class="footer-container m-3 px-10 py-4 flex items-center justify-center bg-antiquewhite">
       <p class="mr-auto">2023, MaxFindsCars LLC</p>
       <a href="https://twitter.com/maxjzin" class="mx-1">

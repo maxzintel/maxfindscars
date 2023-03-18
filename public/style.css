@@ -649,6 +649,10 @@ video {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-36 {
   height: 9rem;
 }
@@ -840,6 +844,24 @@ video {
 
 .outline-2 {
   outline-width: 2px;
+}
+
+@media (min-width: 768px) {
+  .md\:block {
+    display: block;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:w-3\/4 {
+    width: 75%;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
 }
 
 @media (min-width: 1024px) {
