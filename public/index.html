@@ -3,56 +3,101 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaxFindsCars</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="./logos/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <img src="./logos/logo.png" alt="Logo">
-    <nav>
-      <form id="subcribe-form" action="/signup" method="POST">
-        <input type="email" id="email" name="email" placeholder="Enter email address...">
-        <input type="submit" value="SUBSCRIBE">
+  <header class="p-5 justify-between ml-3 mr-3 mt-3 mb-1 bg-antiquewhite">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between">
+      <div class="flex lg:flex-1">
+        <a href="" class="-m-1.5 p-1.5">
+          <span class="sr-only">MaxFindsCars</span>
+          <img class="h-36 w-auto object-contain" src="./logos/logo.png" alt="Logo">
+        </a>
+      </div>
+      <form class="font-bold hidden md:block">
+        <input type="email" id="email" name="email" placeholder="Enter email address..." class="p-3 border">
+        <input type="submit" value="SUBSCRIBE" class="p-3 outline-2 border-black border-2 bg-yellow">
       </form>
     </nav>
-  </header>
+  </header>  
   <main>
-    <div class="container">
-      <h1>
-        THE MOST INTERESTING
-         CARS ON THE INTERNET
+    <div class="container border-black p-5 m-2 mt-0">
+      <h1 class="left-0 font-bold text-3xl">
+        THE MOST INTERESTING CARS ON THE INTERNET IN YOUR INBOX
       </h1>
-      <h2>WRITTEN BY MAX, WHO ONCE WIRED HIS BRAKES TO HIS FRONT TURN SIGNALS AND DID NOT NOTICE FOR A WHOLE 30 MILES.</h2>
-      <p>Join and get our 5 minute newsletter a few times a week showing off the most interesting cars for sale online.</p>
+      <h2 class="text-lg left-0 font-bold mt-3">
+        Join our gaggle of car lovers and get a MWF newsletter showing off the most interesting cars for sale online and telling their stories!
+      </h2>
+      <p class="text-base mt-3 left-0">
+        ✍️ WRITTEN BY MAX WHO ONCE WIRED HIS BRAKES TO HIS FRONT TURN SIGNALS AND DID NOT NOTICE FOR A WHOLE 30 MILES.
+      </p>
     </div>
-    <div class="container-div">
-      <div class="half-container">
-        <form id="subcribe-form" action="/signup" method="POST">
-          <input type="email" id="email" name="email" placeholder="Enter email address...">
-          <input type="submit" value="SUBSCRIBE">
+    <div class="flex flex-col md:flex-row justify-around w-full">
+      <div class="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex items-center justify-center">
+        <form class="font-bold flex flex-col items-center px-4 w-full">
+          <input type="email" id="email" name="email" placeholder="Enter email address..." class="p-3 border mb-3 text-lg w-full md:w-3/4">
+          <input type="submit" value="SUBSCRIBE" class="text-lg p-3 outline-2 border-black border-2 w-full md:w-1/2 bg-yellow">
         </form>
       </div>
-      <div class="half-container">
-        <p>READ BY EXECUTIVES OF THESE REPUTABLE COMPANIES*</p>
-        <img src="./logos/Theranos-Logo.png">
-        <img src="./logos/Wells_Fargo_Bank.svg.png">
-        <img src="./logos/FTX_logo.svg.png">
-        <img src="./logos/Kmart_logo.svg.png">
-        <img src="./logos/Logo_de_Enron.svg.png">
-        <img src="./logos/swingerooBlackerandBEtter.png">
-        <p class="fine-print">*this is a joke don't sue me</p>
+      <div class="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex flex-col items-center justify-center">
+        <p class="text-base mb-4 mt-4 font-bold">
+          📚 READ BY EXECUTIVES OF MANY REPUTABLE COMPANIES*
+        </p>
+        <div class="grid grid-cols-3 ml-5 mr-5 p-4">
+          <img class="h-16 w-auto object-contain mb-4" src="./logos/Theranos-Logo.png">
+          <img class="h-16 w-auto object-contain mb-4" src="./logos/Wells_Fargo_Bank.svg.png">
+          <img class="h-16 w-auto object-contain mb-4" src="./logos/FTX_logo.svg.png">
+          <img class="h-16 w-auto object-contain mb-4" src="./logos/Kmart_logo.svg.png">
+          <img class="h-16 w-auto object-contain mb-4" src="./logos/Logo_de_Enron.svg.png">
+          <img class="h-16 w-auto object-contain mb-4" src="./logos/swingerooBlackerandBEtter.png">
+        </div>
+        <p class="mb-4 mt-4 text-sm">
+          *this is a joke don't sue me pls
+        </p> 
+      </div>      
+    </div>
+    <div class="mt-5">
+      <h2 class="text-center text-3xl font-bold mb-5">🤔 STILL NOT CONVINCED?</h2>
+      <div class="flex flex-col md:flex-row justify-between w-full">
+        <div class="md:w-1/2 p-5">
+          <h3 class="text-xl font-bold mb-3 text-center">WHAT YOU GET WHEN YOU SIGN UP:</h3>
+          <ul class="list-disc list-outside ml-5">
+            <li class="mb-2">🗓️ A Monday, Wednesday, Friday newsletter that (usually) takes 5 minutes to read unless Max gets really carried away.</li>
+            <li class="mb-2">🚕 The most interesting, strange, cool, or downright WILD vehicles for sale online, hand delivered to your electronic mail inbox by Max himself.</li>
+            <li class="mb-2">💗 A place in Max's heart (he will love you if you read his emails).</li>
+            <li class="mb-2">💯 The knowledge that any advertising money Max earns from this website will probably go directly to buying car parts.</li>
+          </ul>
+        </div>
+        <div class="md:w-1/2 p-5">
+          <h3 class="text-xl font-bold mb-3">RECENTLY FOUND CARS:</h3>
+          <div class="mb-4">
+            <h4 class="text-lg font-semibold">DONT LOOK HERE</h4>
+            <p class="text-sm">Max has not finished coding this feature.</p>
+          </div>
+          <!-- <div class="mb-4">
+            <h4 class="text-lg font-semibold">Blog Post Title 2</h4>
+            <p class="text-sm">Posted on: 2023-03-15</p>
+          </div>
+          <div class="mb-4">
+            <h4 class="text-lg font-semibold">Blog Post Title 3</h4>
+            <p class="text-sm">Posted on: 2023-03-14</p>
+          </div> -->
+        </div>
       </div>
     </div>
-    <div class="footer-container">
-      <p>2023, MaxFindsCars LLC</p>
-      <a href="https://twitter.com/maxjzin">
-        <img src="./logos/Twitter-logo.svg.png" alt="Twitter Icon">
+    <div class="footer-container m-3 px-10 py-4 flex items-center justify-center bg-antiquewhite">
+      <p class="mr-auto">2023, MaxFindsCars LLC</p>
+      <a href="https://twitter.com/maxjzin" class="mx-1">
+        <img src="./logos/Twitter-logo.svg.png" alt="Twitter Icon" class="h-6">
       </a>
-      <a href="https://github.com/maxzintel">
-        <img src="./logos/25231.png" alt="GitHub Icon">
+      <a href="https://github.com/maxzintel" class="mx-1">
+        <img src="./logos/25231.png" alt="GitHub Icon" class="h-6">
       </a>
-    </div>
+    </div>      
   </main>
 </body>
 </html>
