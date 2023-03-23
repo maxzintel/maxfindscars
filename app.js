@@ -6,10 +6,14 @@ require('dotenv').config();
 
 const app = express();
 
+// EJS is used for loading data we get here into our html files.
+app.set('view engine', 'ejs');
+
 // Bodyparser Middleware for signup data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Static folder
+app.set('views', path.join(__dirname, 'public', 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const options = {
@@ -21,6 +25,36 @@ const options = {
   },
   json: true,
 };
+
+const get_posts = {
+  method: 'GET',
+  url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/posts`,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${process.env.beehiivKey}`,
+  },
+  qs: {
+    status: 'confirmed',
+    platform: 'both'
+  },
+  json: true,
+}
+
+// get posts
+app.get('/', (req, res) => {
+  request(get_posts, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    // Sort the posts array by publish_date in descending order
+    const sortedPosts = body.data.sort((a, b) => b.publish_date - a.publish_date);
+
+    // Get the most recent 3 posts
+    const recentPosts = sortedPosts.slice(0, 3);
+
+    // Render the HTML page with the recentPosts data
+    res.render('index', { posts: recentPosts });
+  });
+});
 
 // Signup Route
 app.post('/signup', (req, res) => {

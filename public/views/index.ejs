@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaxFindsCars</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
   <link rel="icon" type="image/png" href="./logos/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
@@ -74,18 +74,19 @@
         </div>
         <div class="md:w-1/2 p-5">
           <h3 class="text-xl font-bold mb-3">RECENTLY FOUND CARS:</h3>
-          <div class="mb-4">
-            <h4 class="text-lg font-semibold">DONT LOOK HERE</h4>
-            <p class="text-sm">Max has not finished coding this feature.</p>
-          </div>
-          <!-- <div class="mb-4">
-            <h4 class="text-lg font-semibold">Blog Post Title 2</h4>
-            <p class="text-sm">Posted on: 2023-03-15</p>
-          </div>
-          <div class="mb-4">
-            <h4 class="text-lg font-semibold">Blog Post Title 3</h4>
-            <p class="text-sm">Posted on: 2023-03-14</p>
-          </div> -->
+          <% if (posts && posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+              <div class="mb-4">
+                <h4 class="text-lg font-semibold"><%= post.title %></h4>
+                <p class="text-sm">Posted on: <%= post.date %></p>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div class="mb-4">
+              <h4 class="text-lg font-semibold">DONT LOOK HERE</h4>
+              <p class="text-sm">Max has not finished coding this feature.</p>
+            </div>
+          <% } %>
         </div>
       </div>
     </div>
