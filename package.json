@@ -19,10 +19,13 @@
   },
   "homepage": "https://github.com/maxzintel/maxfindscars#readme",
   "dependencies": {
+    "axios": "^1.3.4",
     "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
-    "ejs": "^3.1.9",
+    "eslint": "^8.36.0",
     "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "request": "^2.88.2"
   },
   "devDependencies": {

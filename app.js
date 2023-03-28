@@ -6,15 +6,12 @@ require('dotenv').config();
 
 const app = express();
 
-// EJS is used for loading data we get here into our html files.
-app.set('view engine', 'ejs');
-
 // Bodyparser Middleware for signup data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Static folder
-app.set('views', path.join(__dirname, 'public', 'views'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'client', 'public', 'views'));
+app.use(express.static(path.join(__dirname, 'client', 'public')));
 
 const options = {
   method: 'POST',
@@ -51,8 +48,8 @@ app.get('/', (req, res) => {
     // Get the most recent 3 posts
     const recentPosts = sortedPosts.slice(0, 3);
 
-    // Render the HTML page with the recentPosts data
-    res.render('index', { posts: recentPosts });
+    // Return the recentPosts data as a JSON object
+    res.json({ posts: recentPosts });
   });
 });
 
@@ -62,7 +59,7 @@ app.post('/signup', (req, res) => {
 
   // Make sure fields are filled.
   if (!email) {
-    res.redirect('/fail.html');
+    res.sendStatus(400);
     return;
   }
 
@@ -80,15 +77,15 @@ app.post('/signup', (req, res) => {
     if (error) {
       console.log(error);
       console.log('Request Failed with Above Error.');
-      res.redirect('/fail.html');
+      res.sendStatus(400);
     } else {
       if (body.data.status === 'validating') {
         console.log('Your email address is validating...');
         checkStatus(body.data.id, res);
       } else if (body.data.status === 'active') {
-        res.redirect('/success.html');
+        res.sendStatus(200);
       } else {
-        res.redirect('/fail.html');
+        res.sendStatus(400);
         console.log('Request Failed for an Unknown Reason.');
       }
       console.log(body);
@@ -111,7 +108,7 @@ function checkStatus(id, res) {
   request(options, (error, response, body) => {
     if (error) {
       console.log(error);
-      res.redirect('/fail.html');
+      res.sendStatus(400);
     } else if (body && body.data && body.data.status) {
       const status = body.data.status;
       if (status === 'validating') {
@@ -121,10 +118,10 @@ function checkStatus(id, res) {
         }, 2000);
       } else if (status === 'active') {
         // If the status is 'active', redirect the user to the success page
-        res.redirect('/success.html');
+        res.sendStatus(200);
       } else {
         console.log('Request Failed for an Unknown Reason.');
-        res.redirect('/fail.html');
+        res.sendStatus(400);
       }
     }
   });
