@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 // Bodyparser Middleware for signup data parsing
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Static folder
 app.set('views', path.join(__dirname, 'client', 'public', 'views'));
