@@ -4,8 +4,11 @@
   "description": "The greatest website that ever didnt live",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start:backend": "node app.js",
+    "start:frontend": "cd client && npm start",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "dev:backend": "nodemon app.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run start:frontend\""
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,7 @@
   "homepage": "https://github.com/maxzintel/maxfindscars#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "concurrently": "^7.6.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.36.0",
     "express": "^4.18.2",
