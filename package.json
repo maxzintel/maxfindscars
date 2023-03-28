@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:backend": "node app.js",
-    "start:frontend": "cd client && npm start",
+    "start:frontend": "cd client && npm install && npm start",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "dev:backend": "nodemon app.js",
     "dev": "concurrently \"npm run dev:backend\" \"npm run start:frontend\""
