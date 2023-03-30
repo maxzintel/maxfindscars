@@ -3,8 +3,26 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const path = require('path');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
+
+const allowedOrigins = [
+  'https://maxfindscars-frontend.onrender.com',
+];
+
+if (process.env.NODE_ENV !== 'production') {
+  allowedOrigins.push('http://localhost:3000'); // Replace 3000 with the port your React app runs on
+}
+
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
+
 
 // Bodyparser Middleware for signup data parsing
 app.use(bodyParser.json());
