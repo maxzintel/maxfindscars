@@ -9,7 +9,7 @@ const SignupForm = () => {
   const submitForm = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('/signup', { email }, { headers: { 'Content-Type': 'application/json' } });
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, { email }, { headers: { 'Content-Type': 'application/json' } });
       setMessage('Success! Feel free to press the back button and subscribe all your friends 😊');
     } catch (error) {
       setMessage('FAILED. PRESS THE BACK BUTTON AND FIX THE TYPO PUNK.');
