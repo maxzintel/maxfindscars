@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaxFindsCars</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
   <link rel="icon" type="image/png" href="./logos/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
@@ -18,8 +18,8 @@
           <img class="h-36 w-auto object-contain" src="./logos/logo.png" alt="Logo">
         </a>
       </div>
-      <form class="font-bold hidden md:block" id="subcribe-form" action="/signup" method="POST">
-        <input type="email" id="email" name="email" placeholder="Enter email address..." class="p-3 border">
+      <form class="font-bold hidden md:block" id="subcribe-form-header">
+        <input type="email" id="email-header" name="email" placeholder="Enter email address..." class="p-3 border">
         <input type="submit" value="SUBSCRIBE" class="p-3 outline-2 border-black border-2 bg-yellow">
       </form>
     </nav>
@@ -38,10 +38,11 @@
     </div>
     <div class="flex flex-col md:flex-row justify-around w-full">
       <div class="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex items-center justify-center">
-        <form class="font-bold flex flex-col items-center px-4 w-full" id="subcribe-form" action="/signup" method="POST">
-          <input type="email" id="email" name="email" placeholder="Enter email address..." class="p-3 border mb-3 text-lg w-full md:w-3/4">
+        <form class="font-bold flex flex-col items-center px-4 w-full" id="subcribe-form-main">
+          <input type="email" id="email-main" name="email" placeholder="Enter email address..." class="p-3 border mb-3 text-lg w-full md:w-3/4">
           <input type="submit" value="SUBSCRIBE" class="text-lg p-3 outline-2 border-black border-2 w-full md:w-1/2 bg-yellow">
         </form>
+        <div id="message-container"></div>
       </div>
       <div class="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex flex-col items-center justify-center">
         <p class="text-base mb-4 mt-4 font-bold">
@@ -74,18 +75,19 @@
         </div>
         <div class="md:w-1/2 p-5">
           <h3 class="text-xl font-bold mb-3">RECENTLY FOUND CARS:</h3>
-          <div class="mb-4">
-            <h4 class="text-lg font-semibold">DONT LOOK HERE</h4>
-            <p class="text-sm">Max has not finished coding this feature.</p>
-          </div>
-          <!-- <div class="mb-4">
-            <h4 class="text-lg font-semibold">Blog Post Title 2</h4>
-            <p class="text-sm">Posted on: 2023-03-15</p>
-          </div>
-          <div class="mb-4">
-            <h4 class="text-lg font-semibold">Blog Post Title 3</h4>
-            <p class="text-sm">Posted on: 2023-03-14</p>
-          </div> -->
+          <% if (posts && posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+              <div class="mb-4">
+                <h4 class="text-lg font-semibold"><%= post.title %></h4>
+                <p class="text-sm">Posted on: <%= post.date %></p>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div class="mb-4">
+              <h4 class="text-lg font-semibold">DONT LOOK HERE</h4>
+              <p class="text-sm">Max has not finished coding this feature.</p>
+            </div>
+          <% } %>
         </div>
       </div>
     </div>
@@ -99,5 +101,40 @@
       </a>
     </div>      
   </main>
+  <!-- THIS SHEEEET AINT WORK. -->
+  <script>
+    const formHeader = document.getElementById("subcribe-form-header");
+    const formMain = document.getElementById("subcribe-form-main");
+    const messageContainer = document.getElementById("message-container");
+
+    const submitForm = async (event, form) => {
+      event.preventDefault();
+      const email = form.querySelector('input[type="email"]').value;
+
+      const response = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        messageContainer.innerHTML = "<p>Success! Feel free to press the back button and subscribe all your friends 😊</p>";
+      } else {
+        messageContainer.innerHTML = "<p>FAILED. PRESS THE BACK BUTTON AND FIX THE TYPO PUNK.</p>";
+      }
+
+      form.style.display = "none";
+    };
+
+    if (formHeader) {
+      formHeader.addEventListener("submit", (event) => submitForm(event, formHeader));
+    }
+
+    if (formMain) {
+      formMain.addEventListener("submit", (event) => submitForm(event, formMain));
+    }
+  </script>
 </body>
 </html>

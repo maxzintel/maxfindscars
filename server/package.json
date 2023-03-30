@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "css:build": "npx tailwindcss -i ./public/css/input.css -o ./public/style.css"
+    "start:frontend": "cd ../client && npm install && npm run start",
+    "dev:start": "concurrently \"npm run start\" \"npm run start:frontend\"",
+    "dev:backend": "nodemon app.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run start:frontend\""
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,14 @@
   "homepage": "https://github.com/maxzintel/maxfindscars#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "eslint": "^8.36.0",
     "express": "^4.18.2",
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
-    "tailwindcss": "^3.2.7"
+    "nodemon": "^2.0.20"
   }
 }

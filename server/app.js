@@ -3,14 +3,33 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const path = require('path');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
 
+const allowedOrigins = [
+  'https://maxfindscars-frontend.onrender.com',
+];
+
+if (process.env.NODE_ENV !== 'production') {
+  allowedOrigins.push('http://localhost:3000'); // Replace 3000 with the port your React app runs on
+}
+
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
+
+
 // Bodyparser Middleware for signup data parsing
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'client', 'public', 'views'));
+app.use(express.static(path.join(__dirname, 'client', 'public')));
 
 const options = {
   method: 'POST',
@@ -22,13 +41,43 @@ const options = {
   json: true,
 };
 
+const get_posts = {
+  method: 'GET',
+  url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/posts`,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${process.env.beehiivKey}`,
+  },
+  qs: {
+    status: 'confirmed',
+    platform: 'both'
+  },
+  json: true,
+}
+
+// get posts
+app.get('/', (req, res) => {
+  request(get_posts, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    // Sort the posts array by publish_date in descending order
+    const sortedPosts = body.data.sort((a, b) => b.publish_date - a.publish_date);
+
+    // Get the most recent 3 posts
+    const recentPosts = sortedPosts.slice(0, 3);
+
+    // Return the recentPosts data as a JSON object
+    res.json({ posts: recentPosts });
+  });
+});
+
 // Signup Route
 app.post('/signup', (req, res) => {
   const { email } = req.body;
 
   // Make sure fields are filled.
   if (!email) {
-    res.redirect('/fail.html');
+    res.sendStatus(400);
     return;
   }
 
@@ -46,15 +95,15 @@ app.post('/signup', (req, res) => {
     if (error) {
       console.log(error);
       console.log('Request Failed with Above Error.');
-      res.redirect('/fail.html');
+      res.sendStatus(400);
     } else {
       if (body.data.status === 'validating') {
         console.log('Your email address is validating...');
         checkStatus(body.data.id, res);
       } else if (body.data.status === 'active') {
-        res.redirect('/success.html');
+        res.sendStatus(200);
       } else {
-        res.redirect('/fail.html');
+        res.sendStatus(400);
         console.log('Request Failed for an Unknown Reason.');
       }
       console.log(body);
@@ -77,7 +126,7 @@ function checkStatus(id, res) {
   request(options, (error, response, body) => {
     if (error) {
       console.log(error);
-      res.redirect('/fail.html');
+      res.sendStatus(400);
     } else if (body && body.data && body.data.status) {
       const status = body.data.status;
       if (status === 'validating') {
@@ -87,10 +136,10 @@ function checkStatus(id, res) {
         }, 2000);
       } else if (status === 'active') {
         // If the status is 'active', redirect the user to the success page
-        res.redirect('/success.html');
+        res.sendStatus(200);
       } else {
         console.log('Request Failed for an Unknown Reason.');
-        res.redirect('/fail.html');
+        res.sendStatus(400);
       }
     }
   });
