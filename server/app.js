@@ -9,6 +9,7 @@ const app = express();
 
 const allowedOrigins = [
   'https://maxfindscars.com',
+  'https://www.maxfindscars.com'
 ];
 
 if (process.env.NODE_ENV !== 'production') {
