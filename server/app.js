@@ -8,7 +8,7 @@ const cors = require('cors');
 const app = express();
 
 const allowedOrigins = [
-  'https://maxfindscars-frontend.onrender.com',
+  'https://maxfindscars.com',
 ];
 
 if (process.env.NODE_ENV !== 'production') {
