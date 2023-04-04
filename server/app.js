@@ -13,7 +13,7 @@ const allowedOrigins = [
 ];
 
 if (process.env.NODE_ENV !== 'production') {
-  allowedOrigins.push('http://localhost:3000'); // Replace 3000 with the port your React app runs on
+  allowedOrigins.push('http://localhost:3000');
 }
 
 const corsOptions = {
@@ -57,7 +57,7 @@ const get_posts = {
 }
 
 // get posts
-app.get('/', (req, res) => {
+app.get('/recentposts', (req, res) => {
   request(get_posts, function (error, response, body) {
     if (error) throw new Error(error);
 
@@ -71,6 +71,40 @@ app.get('/', (req, res) => {
     res.json({ posts: recentPosts });
   });
 });
+
+app.get('/posts/:slug', (req, res) => {
+  const slug = req.params.slug;
+  const get_post = {
+    method: 'GET',
+    // Don't think we have access to postId properly here yet.
+    url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/posts/${postId}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.beehiivKey}`,
+    },
+    qs: {
+      slug: slug,
+      status: 'confirmed',
+      platform: 'both',
+    },
+    json: true,
+  };
+
+  request(get_post, (error, response, body) => {
+    if (error) {
+      res.sendStatus(400);
+      throw new Error(error);
+    } else {
+      const post = body.data.find((post) => post.slug === slug);
+      if (post) {
+        res.json({ post: post });
+      } else {
+        res.sendStatus(404);
+      }
+    }
+  });
+});
+
 
 // Signup Route
 app.post('/signup', (req, res) => {
