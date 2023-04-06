@@ -19,13 +19,13 @@ const RecentPosts = ({ posts }) => {
       {posts && posts.length > 0 ? (
         posts.map((post) => (
           // Not yet working to properly link posts.
-          <Link to={{ pathname: `/posts/${post.slug}`, state: { postId: post.id } }}>
-            <div key={post.id} className="mb-4 pb-4 border-b border-gray-300">
+          <div key={post.id} className="mb-4 pb-4 border-b border-gray-300">
+            <Link to={{ pathname: `/posts/${post.slug}/${post.id}`, state: { postId: post.id } }}>
               <p className="text-sm font-semibold">{formatDate(post.publish_date)}</p>
               <h4 className="text-lg font-semibold">{post.title}</h4>
               <p className="text-sm">{post.preview_text}</p>
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))
       ) : (
         <div className="mb-4">

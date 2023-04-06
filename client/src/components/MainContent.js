@@ -9,19 +9,19 @@ const MainContent = ({ posts }) => {
   return (
     <main>
       <Header />
-      <div class="container border-black p-5 m-2 mt-0">
-        <h1 class="left-0 font-bold text-3xl">
+      <div className="container border-black p-5 m-2 mt-0">
+        <h1 className="left-0 font-bold text-3xl">
           THE MOST INTERESTING CARS ON THE INTERNET IN YOUR INBOX
         </h1>
-        <h2 class="text-lg left-0 font-bold mt-3">
+        <h2 className="text-lg left-0 font-bold mt-3">
           Join our gaggle of car lovers and get a MWF newsletter showing off the most interesting cars for sale online and telling their stories!
         </h2>
-        <p class="text-base mt-3 left-0">
+        <p className="text-base mt-3 left-0">
           ✍️ WRITTEN BY MAX WHO ONCE WIRED HIS BRAKES TO HIS FRONT TURN SIGNALS AND DID NOT NOTICE FOR A WHOLE 30 MILES.
         </p>
       </div>
-      <div class="flex flex-col md:flex-row justify-around w-full">
-        <div class="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex items-center justify-center">
+      <div className="flex flex-col md:flex-row justify-around w-full">
+        <div className="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex items-center justify-center">
           <SubscriptionForm />
         </div>
         <div className="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex flex-col items-center justify-center">
@@ -29,12 +29,12 @@ const MainContent = ({ posts }) => {
             📚 READ BY EXECUTIVES OF MANY REPUTABLE COMPANIES*
           </p>
           <div className="grid grid-cols-3 ml-5 mr-5 p-4">
-            <img class="h-16 w-auto object-contain mb-4" src="./logos/Theranos-Logo.png"/>
-            <img class="h-16 w-auto object-contain mb-4" src="./logos/Wells_Fargo_Bank.svg.png"/>
-            <img class="h-16 w-auto object-contain mb-4" src="./logos/FTX_logo.svg.png"/>
-            <img class="h-16 w-auto object-contain mb-4" src="./logos/Kmart_logo.svg.png"/>
-            <img class="h-16 w-auto object-contain mb-4" src="./logos/Logo_de_Enron.svg.png"/>
-            <img class="h-16 w-auto object-contain mb-4" src="./logos/swingerooBlackerandBEtter.png"/>
+            <img className="h-16 w-auto object-contain mb-4" src="./logos/Theranos-Logo.png"/>
+            <img className="h-16 w-auto object-contain mb-4" src="./logos/Wells_Fargo_Bank.svg.png"/>
+            <img className="h-16 w-auto object-contain mb-4" src="./logos/FTX_logo.svg.png"/>
+            <img className="h-16 w-auto object-contain mb-4" src="./logos/Kmart_logo.svg.png"/>
+            <img className="h-16 w-auto object-contain mb-4" src="./logos/Logo_de_Enron.svg.png"/>
+            <img className="h-16 w-auto object-contain mb-4" src="./logos/swingerooBlackerandBEtter.png"/>
           </div>
           <p className="mb-4 mt-4 text-sm">
             *this is a joke don't sue me pls

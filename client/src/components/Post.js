@@ -9,17 +9,17 @@ const Post = () => {
   const postId = location.state.postId;
 
   useEffect(() => {
-    fetch(`/posts/${postId}`)
+    fetch(`/posts/${slug}/${postId}`)
       .then((response) => response.json())
       .then((data) => setPost(data.post));
-  }, [postId]);
+  }, [slug, postId]);
 
   return (
     <div>
       {post ? (
         <>
           <h1>{post.title}</h1>
-          <p>{post.content}</p>
+          <p>{post.content.free.web}</p>
         </>
       ) : (
         <div>Loading...</div>

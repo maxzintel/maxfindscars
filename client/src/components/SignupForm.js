@@ -24,7 +24,7 @@ const SignupForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter email address..."
-          class="p-3 border mb-3 text-lg w-full md:w-3/4"
+          className="p-3 border mb-3 text-lg w-full md:w-3/4"
         />
         <input type="submit" value="SUBSCRIBE" className="p-3 outline-2 border-black border-2 bg-yellow" />
       </form>

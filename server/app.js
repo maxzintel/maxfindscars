@@ -42,7 +42,7 @@ const options = {
   json: true,
 };
 
-const get_posts = {
+const get_recentposts = {
   method: 'GET',
   url: `https://api.beehiiv.com/v2/publications/${process.env.beehiivPubID}/posts`,
   headers: {
@@ -58,7 +58,7 @@ const get_posts = {
 
 // get posts
 app.get('/recentposts', (req, res) => {
-  request(get_posts, function (error, response, body) {
+  request(get_recentposts, function (error, response, body) {
     if (error) throw new Error(error);
 
     // Sort the posts array by publish_date in descending order
@@ -72,8 +72,13 @@ app.get('/recentposts', (req, res) => {
   });
 });
 
-app.get('/posts/:slug', (req, res) => {
+app.get('/api/posts/:slug/:postId', (req, res) => {
+  console.log('request parameters:', req.params);
+  console.log(req.params.slug);
+  console.log(req.params.postId);
+
   const slug = req.params.slug;
+  const postId = req.params.postId;
   const get_post = {
     method: 'GET',
     // Don't think we have access to postId properly here yet.
@@ -83,9 +88,9 @@ app.get('/posts/:slug', (req, res) => {
       Authorization: `Bearer ${process.env.beehiivKey}`,
     },
     qs: {
-      slug: slug,
       status: 'confirmed',
       platform: 'both',
+      'expand[]': 'free_web_content',
     },
     json: true,
   };
@@ -95,8 +100,10 @@ app.get('/posts/:slug', (req, res) => {
       res.sendStatus(400);
       throw new Error(error);
     } else {
-      const post = body.data.find((post) => post.slug === slug);
-      if (post) {
+      console.log(body.data);
+      const post = body.data
+      // const post = body.data.find((post) => post.slug === slug);
+      if (post && post.slug === slug) {
         res.json({ post: post });
       } else {
         res.sendStatus(404);

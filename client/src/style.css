@@ -659,10 +659,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -844,11 +840,6 @@ video {
 
 .text-center {
   text-align: center;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .text-3xl {
