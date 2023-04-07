@@ -23,9 +23,9 @@ const Post = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          minHeight: '10vh',
+          minHeight: '30vh',
         }}>
-          <img src='./img/13.gif' alt="Loading" />
+          <img src={`${process.env.PUBLIC_URL}/logos/13.gif`} alt="Loading" />
         </div>
       )}
     </div>
