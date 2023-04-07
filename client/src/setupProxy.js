@@ -7,13 +7,13 @@ module.exports = function (app) {
     : 'https://maxfindscars.onrender.com';
 
   app.use(
-    '/posts',
+    ['/api'],
     createProxyMiddleware({
       target,
       changeOrigin: true,
-      pathRewrite: {
-        '^/posts': '/api/posts',
-      },
+      // pathRewrite: {
+      //   '^/api': '',
+      // },
     })
-  );
+  );    
 };

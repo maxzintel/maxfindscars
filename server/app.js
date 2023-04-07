@@ -2,10 +2,20 @@ const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
 const path = require('path');
+const helmet = require('helmet');
 require('dotenv').config();
 const cors = require('cors');
 
 const app = express();
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      frameSrc: ["'self'", 'www.youtube.com'], // Allow iFrames from YouTube
+    },
+  })
+);
 
 const allowedOrigins = [
   'https://maxfindscars.com',
@@ -186,6 +196,24 @@ function checkStatus(id, res) {
     }
   });
 }
+
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+app.get('*', (req, res, next) => {
+  if (
+    req.originalUrl.startsWith('/api/') ||
+    req.originalUrl.startsWith('/recentposts') ||
+    req.originalUrl.startsWith('/signup')
+  ) {
+    // If the request starts with '/api/', '/recentposts', or '/signup', proceed to the next middleware
+    next();
+  } else {
+    // Otherwise, serve the React app's index.html file
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+  }
+});
+
+
 
 const PORT = process.env.PORT || 5000
 

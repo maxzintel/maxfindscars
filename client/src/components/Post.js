@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // Not yet working.
 const Post = () => {
   const [post, setPost] = useState(null);
-  const { slug } = useParams();
-  const location = useLocation();
-  const postId = location.state.postId;
+  const { slug, postId } = useParams();
 
   useEffect(() => {
-    fetch(`/posts/${slug}/${postId}`)
+    fetch(`/api/posts/${slug}/${postId}`)
       .then((response) => response.json())
       .then((data) => setPost(data.post));
   }, [slug, postId]);
@@ -17,12 +15,18 @@ const Post = () => {
   return (
     <div>
       {post ? (
-        <>
-          <h1>{post.title}</h1>
-          <p>{post.content.free.web}</p>
-        </>
+        <div>
+          <div dangerouslySetInnerHTML={{ __html: post.content.free.web }}></div>
+        </div>
       ) : (
-        <div>Loading...</div>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '10vh',
+        }}>
+          <img src='./img/13.gif' alt="Loading" />
+        </div>
       )}
     </div>
   );
