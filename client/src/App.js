@@ -8,7 +8,7 @@ const App = () => {
 
   useEffect(() => {
     // Fetch the posts from your existing API route
-    fetch('/recentposts')
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/recentposts`)
       .then((response) => response.json())
       .then((data) => setPosts(data.posts));
   }, []);

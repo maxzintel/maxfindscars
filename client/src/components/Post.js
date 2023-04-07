@@ -7,7 +7,7 @@ const Post = () => {
   const { slug, postId } = useParams();
 
   useEffect(() => {
-    fetch(`/api/posts/${slug}/${postId}`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/posts/${slug}/${postId}`)
       .then((response) => response.json())
       .then((data) => setPost(data.post));
   }, [slug, postId]);
