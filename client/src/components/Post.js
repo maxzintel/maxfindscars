@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
-// Not yet working.
 const Post = () => {
   const [post, setPost] = useState(null);
   const { slug, postId } = useParams();
@@ -14,6 +15,7 @@ const Post = () => {
 
   return (
     <div>
+      <Header />
       {post ? (
         <div>
           <div dangerouslySetInnerHTML={{ __html: post.content.free.web }}></div>
@@ -28,6 +30,7 @@ const Post = () => {
           <img src={`${process.env.PUBLIC_URL}/logos/13.gif`} alt="Loading" />
         </div>
       )}
+      <Footer />
     </div>
   );
 };

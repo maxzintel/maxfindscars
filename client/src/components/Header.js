@@ -9,7 +9,7 @@ const Header = () => {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">MaxFindsCars</span>
-            <img className="h-36 w-auto object-contain" src="./logos/logo.png" alt="Logo" />
+            <img className="h-36 w-auto object-contain" src={`${process.env.PUBLIC_URL}/logos/logo.png`} alt="Logo" />
           </a>
         </div>
         {/* <SignupForm /> */}
