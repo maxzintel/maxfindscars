@@ -137,7 +137,7 @@ app.post('/signup', (req, res) => {
     publication_id: `${process.env.beehiivPubID}`,
     email: email,
     reactivate_existing: false,
-    send_welcome_email: false,
+    send_welcome_email: true,
     utm_source: 'website',
     utm_campaign: 'maxfindscars',
     utm_medium: 'organic',
