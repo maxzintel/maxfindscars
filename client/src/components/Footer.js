@@ -1,5 +1,5 @@
 // Footer.js
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ContactInfo from './ContactInfo';
 
 const Footer = () => {
@@ -14,16 +14,18 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer-container m-3 px-10 py-4 flex items-center justify-center bg-antiquewhite">
-      <p className="mr-auto">2023, MaxFindsCars LLC</p>
+    <footer className="footer-container m-3 px-4 py-4 flex flex-col sm:flex-row items-center justify-center bg-antiquewhite">
+      <p className="mr-0 sm:mr-auto mb-2 sm:mb-0 text-center">2023, MaxFindsCars LLC</p>
       {showContactInfo && <ContactInfo onClose={handleCloseInfo} />}
-      <button onClick={handleContactClick} className="mx-2 p-1 outline-2 border-black border-2 bg-yellow font-bold">CONTACT</button>
-      <a href="https://twitter.com/maxjzin" className="mx-1">
-        <img src={`${process.env.PUBLIC_URL}/logos/Twitter-logo.svg.png`} alt="Twitter Icon" className="h-6" />
-      </a>
-      <a href="https://github.com/maxzintel" className="mx-1">
-        <img src={`${process.env.PUBLIC_URL}/logos/25231.png`} alt="GitHub Icon" className="h-6" />
-      </a>
+      <button onClick={handleContactClick} className="mx-2 p-1 outline-2 border-black border-2 bg-yellow font-bold mb-2 sm:mb-0">CONTACT</button>
+      <div className="flex">
+        <a href="https://twitter.com/maxjzin" className="mx-1">
+          <img src={`${process.env.PUBLIC_URL}/logos/Twitter-logo.svg.png`} alt="Twitter Icon" className="h-6" />
+        </a>
+        <a href="https://github.com/maxzintel" className="mx-1">
+          <img src={`${process.env.PUBLIC_URL}/logos/25231.png`} alt="GitHub Icon" className="h-6" />
+        </a>
+      </div>
     </footer>
   );
 };
