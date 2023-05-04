@@ -13,7 +13,7 @@ const SignupForm = () => {
 
     try {
       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, { email }, { headers: { 'Content-Type': 'application/json' } });
-      setMessage('Success! Thanks for your support! 😊');
+      setMessage('✅ Success! Thanks for your support!');
     } catch (error) {
       setMessage('FAILED. FIX THE TYPO PUNK.');
     } finally {
@@ -24,6 +24,7 @@ const SignupForm = () => {
   return (
     <>
       <form className="font-bold flex flex-col items-center px-4 w-full" onSubmit={submitForm}>
+        {message && <div className='mb-2'>{message}</div>}
         {isLoading ? (
           <img src={`${process.env.PUBLIC_URL}/logos/13.gif`} alt="Loading..." className="mb-3" />
         ) : (
@@ -35,9 +36,8 @@ const SignupForm = () => {
             className="p-3 border mb-3 text-lg w-full md:w-3/4"
           />
         )}
-        <input type="submit" value="SUBSCRIBE" className="p-3 outline-2 border-black border-2 bg-yellow" />
+        <input type="submit" value="SUBSCRIBE" className="p-3 outline-2 border-black border-2 bg-yellow cursor-pointer" />
       </form>
-      {message && <div>{message}</div>}
     </>
   );
 };
