@@ -33,7 +33,7 @@ const Header = () => {
 
 const Modal = ({ onClose }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-    <div className="relative bg-antiquewhite p-8 outline-2 border-black border-2">
+    <div className="relative bg-antiquewhite p-8 outline-2 border-black border-2 w-3/4 md:w-1/2">
       <button onClick={onClose} className="absolute top-1 right-2 text-2xl">
           &times;
       </button>
