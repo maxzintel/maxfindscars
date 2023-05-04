@@ -21,10 +21,10 @@ const MainContent = ({ posts }) => {
         </p>
       </div>
       <div className="flex flex-col md:flex-row justify-around w-full">
-        <div className="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex items-center justify-center">
+        <div className="bg-antiquewhite md:w-1/2 h-72 flex items-center justify-center m-5">
           <SubscriptionForm />
         </div>
-        <div className="m-5 bg-antiquewhite w-full md:w-1/2 h-72 flex flex-col items-center justify-center">
+        <div className="bg-antiquewhite m-5 md:w-1/2 h-72 flex flex-col items-center justify-center">
           <p className="text-base mb-4 mt-4 font-bold">
             📚 READ BY EXECUTIVES OF MANY REPUTABLE COMPANIES*
           </p>
