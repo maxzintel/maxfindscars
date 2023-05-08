@@ -60,6 +60,7 @@ const get_recentposts = {
     Authorization: `Bearer ${process.env.beehiivKey}`,
   },
   qs: {
+    // To do only show delivered posts on site.
     status: 'confirmed',
     platform: 'both'
   },
@@ -67,20 +68,45 @@ const get_recentposts = {
 }
 
 // get posts
-app.get('/recentposts', (req, res) => {
-  request(get_recentposts, function (error, response, body) {
-    if (error) throw new Error(error);
+app.get('/recentposts', async (req, res) => {
+  let currentPage = 1;
+  let totalPages;
+  let allPosts = [];
 
-    // Sort the posts array by publish_date in descending order
-    const sortedPosts = body.data.sort((a, b) => b.publish_date - a.publish_date);
+  do {
+    const currentPagePosts = await new Promise((resolve, reject) => {
+      request(
+        {
+          ...get_recentposts,
+          qs: {
+            ...get_recentposts.qs,
+            page: currentPage,
+          },
+        },
+        (error, response, body) => {
+          if (error) {
+            reject(error);
+          }
+          resolve(body);
+        }
+      );
+    });
 
-    // Get the most recent 3 posts
-    const recentPosts = sortedPosts.slice(0, 3);
+    totalPages = currentPagePosts.total_pages;
+    allPosts = allPosts.concat(currentPagePosts.data);
+    currentPage++;
+  } while (currentPage <= totalPages);
 
-    // Return the recentPosts data as a JSON object
-    res.json({ posts: recentPosts });
-  });
+  // Sort the posts array by publish_date in descending order
+  const sortedPosts = allPosts.sort((a, b) => b.publish_date - a.publish_date);
+
+  // Get the most recent 3 posts
+  const recentPosts = sortedPosts.slice(0, 3);
+
+  // Return the recentPosts data as a JSON object
+  res.json({ posts: recentPosts });
 });
+
 
 app.get('/api/posts/:slug/:postId', (req, res) => {
   console.log('request parameters:', req.params);
