@@ -1,18 +1,15 @@
 // AboutModal.js
 import React from 'react';
 
-const AboutModal = ({ onClose }) => {
+const AboutPage = () => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-      <div className="bg-antiquewhite p-8 outline-2 border-black border-2 relative">
-        <button onClick={onClose} className="top-2 right-2 absolute">
-          &times;
-        </button>
-        <h2 className='font-bold text-lg text-center'>ABOUT MAX</h2>
-        <div className="flex flex-col items-center justify-center mt-4">
-          <img src={`${process.env.PUBLIC_URL}/img/IMG_2954.jpg`} alt="Max" className="h-32 w-auto object-contain mb-4 rounded-md" />
-          <p className="text-center text-lg font-semibold">This is Max!</p>
-          <div className="space-y-4">
+  <div className="min-h-screen flex items-center justify-center p-4 bg-antiquewhite">
+    <div className="w-full max-w-[50%]">
+      <h2 className='font-bold text-lg text-center mb-4'>ABOUT MAX</h2>
+      <div className="flex flex-col items-center justify-center mt-4 overflow-y-auto max-h-full space-y-4">
+        <img src={`${process.env.PUBLIC_URL}/img/IMG_2954.jpg`} alt="Max" className="h-32 w-auto object-contain mb-4 rounded-md" />
+        <p className="text-center text-lg font-semibold">This is Max!</p>
+        <div className="space-y-4">
             <p className="text-center">
               Max has been into cars his whole life, ever since he cried for days after
               leaving his <i>Hot Wheels Audi TT</i> on a plane when he was 5. 🚙
@@ -60,11 +57,10 @@ const AboutModal = ({ onClose }) => {
               </ul>
             </p>
           </div>
-          {/* Add more content here */}
         </div>
       </div>
     </div>
   );
 };
 
-export default AboutModal;
+export default AboutPage;

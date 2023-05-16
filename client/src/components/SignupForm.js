@@ -14,8 +14,11 @@ const SignupForm = () => {
     try {
       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, { email }, { headers: { 'Content-Type': 'application/json' } });
       setMessage('✅ Success! Thanks for your support!');
+      gtag('event', 'sign_up', {
+        date: new Date().toISOString()
+      });
     } catch (error) {
-      setMessage('FAILED. FIX THE TYPO PUNK.');
+      setMessage('❌ FAILED. FIX THE TYPO PUNK.');
     } finally {
       setIsLoading(false); // Set isLoading back to false after the request has completed
     }

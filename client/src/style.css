@@ -636,10 +636,6 @@ video {
   top: 0.25rem;
 }
 
-.top-2 {
-  top: 0.5rem;
-}
-
 .z-50 {
   z-index: 50;
 }
@@ -735,6 +731,10 @@ video {
   margin-top: 1.25rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -763,6 +763,14 @@ video {
   height: 18rem;
 }
 
+.max-h-full {
+  max-height: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-3\/4 {
   width: 75%;
 }
@@ -777,6 +785,10 @@ video {
 
 .max-w-7xl {
   max-width: 80rem;
+}
+
+.max-w-\[50\%\] {
+  max-width: 50%;
 }
 
 .cursor-pointer {
@@ -823,6 +835,10 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .rounded-md {
