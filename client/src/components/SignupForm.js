@@ -14,6 +14,8 @@ const SignupForm = () => {
     try {
       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, { email }, { headers: { 'Content-Type': 'application/json' } });
       setMessage('✅ Success! Thanks for your support!');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({'event': 'signup_success'});
       gtag('event', 'sign_up', {
         date: new Date().toISOString()
       });
