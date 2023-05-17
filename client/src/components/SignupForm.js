@@ -13,7 +13,7 @@ const SignupForm = () => {
 
     try {
       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, { email }, { headers: { 'Content-Type': 'application/json' } });
-      setMessage('✅ Success! Thanks for your support!');
+      setMessage('✅ Success! Look for a welcome email soon!');
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({'event': 'signup_success'});
       window.dataLayer.push({'event': 'ads_conversion_Sign_up_1'})
