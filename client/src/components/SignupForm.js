@@ -16,6 +16,7 @@ const SignupForm = () => {
       setMessage('✅ Success! Thanks for your support!');
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({'event': 'signup_success'});
+      window.dataLayer.push({'event': 'ads_conversion_Sign_up_1'})
       gtag('event', 'sign_up', {
         date: new Date().toISOString()
       });
