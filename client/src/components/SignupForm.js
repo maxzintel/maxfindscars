@@ -21,7 +21,7 @@ const SignupForm = () => {
         date: new Date().toISOString()
       });
     } catch (error) {
-      setMessage('❌ FAILED. FIX THE TYPO PUNK.');
+      setMessage('❌ FAILED. Check for typos and try again!');
     } finally {
       setIsLoading(false); // Set isLoading back to false after the request has completed
     }
