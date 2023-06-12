@@ -14,17 +14,14 @@ const MainContent = ({ posts }) => {
           THE MOST INTERESTING CARS ON THE INTERNET IN YOUR INBOX
         </h1>
         <h2 className="text-lg left-0 font-bold mt-3">
-          Join our gaggle of car lovers and get a MWF newsletter showing off the most interesting cars for sale online and telling their stories!
+        ✍️ Written by an ex-BMW Engineer
         </h2>
-        <p className="text-base mt-3 left-0">
-          ✍️ WRITTEN BY MAX WHO ONCE WIRED HIS BRAKES TO HIS FRONT TURN SIGNALS AND DID NOT NOTICE FOR A WHOLE 30 MILES.
-        </p>
       </div>
       <div className="flex flex-col md:flex-row justify-around w-full">
-        <div className="bg-antiquewhite md:w-1/2 h-72 flex items-center justify-center m-5">
+        <div className="bg-antiquewhite md:w-1/2 lg:h-72 md:h-72 sm:h-60 flex items-center justify-center m-4">
           <SubscriptionForm />
         </div>
-        <div className="bg-antiquewhite m-5 md:w-1/2 h-72 flex flex-col items-center justify-center">
+        <div className="bg-antiquewhite m-4 md:w-1/2 h-72 flex flex-col items-center justify-center">
           <p className="text-base mb-4 mt-4 font-bold">
             📚 READ BY EXECUTIVES OF MANY REPUTABLE COMPANIES*
           </p>
@@ -47,10 +44,10 @@ const MainContent = ({ posts }) => {
           <div className="md:w-1/2 p-5">
             <h3 className="text-xl font-bold mb-3 text-center">WHAT YOU GET WHEN YOU SIGN UP:</h3>
             <ul className="list-disc list-outside ml-5">
-              <li className="mb-2">🗓️ A Monday, Wednesday, Friday newsletter that (usually) takes 5 minutes to read unless Max gets really carried away.</li>
-              <li className="mb-2">🚕 The most interesting, strange, cool, or downright WILD vehicles for sale online, hand delivered to your electronic mail inbox by Max himself.</li>
+              <li className="mb-2">🗓️ A (free) Monday & Friday 5 min newsletter unless Max gets really carried away.</li>
+              <li className="mb-2">🚕 The most interesting, strange, cool, or downright WILD vehicles for sale online, hand delivered to your e-mail inbox by Max himself.</li>
               <li className="mb-2">💗 A place in Max's heart (he will love you if you read his emails).</li>
-              <li className="mb-2">💯 The knowledge that any advertising money Max earns from this website will probably go directly to buying car parts.</li>
+              <li className="mb-2">🔧 The knowledge that any advertising money Max earns from the newsletter will probably go directly to buying car parts.</li>
             </ul>
           </div>
           <div className="md:w-1/2 p-5">

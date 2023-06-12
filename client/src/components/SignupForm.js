@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('🏁Join to get our 5 min newsletter showcasing the most interesting cars for sale online.');
   const [isLoading, setIsLoading] = useState(false); // Add this line
 
   const submitForm = async (event) => {
@@ -30,7 +30,7 @@ const SignupForm = () => {
   return (
     <>
       <form className="font-bold flex flex-col items-center px-4 w-full" onSubmit={submitForm}>
-        {message && <div className='mb-2'>{message}</div>}
+        {message && <div className='p-3 mb-1 w-full md:w-3/4'>{message}</div>}
         {isLoading ? (
           <img src={`${process.env.PUBLIC_URL}/logos/13.gif`} alt="Loading..." className="mb-3" />
         ) : (
