@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('🏁Join to get our 5 min newsletter showcasing the most interesting cars for sale online.');
+  const [message, setMessage] = useState('🏁 Join to get our free 5 min newsletter showcasing the most interesting cars for sale online!');
   const [isLoading, setIsLoading] = useState(false); // Add this line
 
   const submitForm = async (event) => {
