@@ -23,19 +23,17 @@ const MainContent = ({ posts }) => {
         </div>
         <div className="bg-antiquewhite m-4 md:w-1/2 h-72 flex flex-col items-center justify-center">
           <p className="text-base mb-4 mt-4 font-bold">
-            📚 READ BY EXECUTIVES OF MANY REPUTABLE COMPANIES*
+            📚 Read by the people who build, create, and run...
           </p>
-          <div className="grid grid-cols-3 ml-5 mr-5 p-4">
-            <img className="h-16 w-auto object-contain mb-4" src="./logos/Theranos-Logo.png"/>
-            <img className="h-16 w-auto object-contain mb-4" src="./logos/Wells_Fargo_Bank.svg.png"/>
-            <img className="h-16 w-auto object-contain mb-4" src="./logos/FTX_logo.svg.png"/>
-            <img className="h-16 w-auto object-contain mb-4" src="./logos/Kmart_logo.svg.png"/>
-            <img className="h-16 w-auto object-contain mb-4" src="./logos/Logo_de_Enron.svg.png"/>
-            <img className="h-16 w-auto object-contain mb-4" src="./logos/swingerooBlackerandBEtter.png"/>
+          <div className="grid grid-cols-2 ml-5 mr-5 p-4">
+            <img className="h-24 w-auto object-contain mb-4" src="./logos/bmw.png"/>
+            <img className="h-8 w-auto object-contain mb-4 mt-7" src="./logos/hagerty.png"/>
+            <img className="h-8 w-auto object-contain mb-4" src="./logos/thehustle.png"/>
+            <img className="h-12 w-auto object-contain mb-4" src="./logos/morningbrew.png"/>
           </div>
-          <p className="mb-4 mt-4 text-sm">
+          {/* <p className="mb-4 mt-4 text-sm">
             *this is a joke don't sue me pls
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="mt-5">
