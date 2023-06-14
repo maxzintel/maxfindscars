@@ -29,7 +29,7 @@ const MainContent = ({ posts }) => {
             <img className="h-24 w-auto object-contain mb-4" src="./logos/bmw.png"/>
             <img className="h-8 w-auto object-contain mb-4 mt-7" src="./logos/hagerty.png"/>
             <img className="h-8 w-auto object-contain mb-4" src="./logos/thehustle.png"/>
-            <img className="h-12 w-auto object-contain mb-4" src="./logos/morningbrew.png"/>
+            <img className="h-12 w-auto object-contain mb-4 ml-3" src="./logos/morningbrew.png"/>
           </div>
           {/* <p className="mb-4 mt-4 text-sm">
             *this is a joke don't sue me pls
