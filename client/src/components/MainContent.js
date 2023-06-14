@@ -22,7 +22,7 @@ const MainContent = ({ posts }) => {
           <SubscriptionForm />
         </div>
         <div className="bg-antiquewhite m-4 md:w-1/2 h-72 flex flex-col items-center justify-center">
-          <p className="text-base mb-4 mt-4 font-bold">
+          <p className="w-3/4 p-3 text-base mb-4 mt-4 font-bold">
             📚 Read by the people who build, create, and run...
           </p>
           <div className="grid grid-cols-2 ml-5 mr-5 p-4">
