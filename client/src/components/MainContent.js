@@ -11,7 +11,7 @@ const MainContent = ({ posts }) => {
       <Header />
       <div className="container border-black p-5 m-2 mt-0">
         <h1 className="left-0 font-bold text-3xl">
-          THE MOST INTERESTING CARS ON THE INTERNET IN YOUR INBOX
+          THE MOST INTERESTING CARS ON THE INTERNET, IN YOUR INBOX.
         </h1>
         <h2 className="text-lg left-0 font-bold mt-3">
         ✍️ Written by an ex-BMW Engineer
@@ -29,7 +29,7 @@ const MainContent = ({ posts }) => {
             <img className="h-24 w-auto object-contain mb-4" src="./logos/bmw.png"/>
             <img className="h-8 w-auto object-contain mb-4 mt-7" src="./logos/hagerty.png"/>
             <img className="h-8 w-auto object-contain mb-4" src="./logos/thehustle.png"/>
-            <img className="h-12 w-auto object-contain mb-4" src="./logos/morningbrew.png"/>
+            <img className="h-12 w-auto object-contain mb-4 ml-3" src="./logos/morningbrew.png"/>
           </div>
           {/* <p className="mb-4 mt-4 text-sm">
             *this is a joke don't sue me pls
