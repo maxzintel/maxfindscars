@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainContent from './components/MainContent';
 import Post from './components/Post';
 import About from './components/AboutPage';
-import GoogleAnalytics from './components/GoogleAnalytics';
+import Analytics from './components/Analytics';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <Router>
-      <GoogleAnalytics />
+      <Analytics />
       <Routes>
         <Route path="/" element={<MainContent posts={posts} />} />
         {/* <Route path="/about" component={About} /> */}
