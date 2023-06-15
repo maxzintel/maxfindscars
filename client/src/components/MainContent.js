@@ -1,4 +1,3 @@
-// MainContent.js
 import React from 'react';
 import SubscriptionForm from './SignupForm';
 import RecentPosts from './RecentPosts';
@@ -25,15 +24,11 @@ const MainContent = ({ posts }) => {
           <p className="p-3 text-base mb-4 mt-4 font-bold">
             📚 Read by the people who build, create, and run...
           </p>
-          <div className="grid grid-cols-2 ml-5 mr-5 p-4">
-            <img className="h-24 w-auto object-contain mb-4" src="./logos/bmw.png"/>
-            <img className="h-8 w-auto object-contain mb-4 mt-7" src="./logos/hagerty.png"/>
-            <img className="h-8 w-auto object-contain mb-4" src="./logos/thehustle.png"/>
-            <img className="h-12 w-auto object-contain mb-4 ml-3" src="./logos/morningbrew.png"/>
+          <div className="m-2 p-4">
+            <div className='m-2'>
+              <img src="./logos/brands.png" className='max-w-full h-auto' alt="Logos of brands such as BMW, Hagerty, The Hustle, and Morning Brew"/>
+            </div>
           </div>
-          {/* <p className="mb-4 mt-4 text-sm">
-            *this is a joke don't sue me pls
-          </p> */}
         </div>
       </div>
       <div className="mt-5">
