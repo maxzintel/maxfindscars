@@ -8,6 +8,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build:prod": "tailwindcss build src/css/input.css -o src/style.css && npm run build",
     "build:css": "tailwindcss build src/css/input.css -o src/style.css --watch"
   },
   "keywords": [],
