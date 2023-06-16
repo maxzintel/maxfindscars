@@ -1,18 +1,30 @@
-// SignupForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('🏁 Join to get our free 5 min newsletter showcasing the most interesting cars for sale online!');
-  const [isLoading, setIsLoading] = useState(false); // Add this line
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitForm = async (event) => {
     event.preventDefault();
-    setIsLoading(true); // Set isLoading to true before making the request
+    setIsLoading(true); 
+
+    // Extract UTM parameters from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const utm_source = urlParams.get("utm_source") || 'website';
+    const utm_campaign = urlParams.get("utm_campaign") || 'maxfindscars';
+    const utm_medium = urlParams.get("utm_medium") || 'organic';
+
+    const payload = {
+      email: email,
+      utm_source: utm_source,
+      utm_campaign: utm_campaign,
+      utm_medium: utm_medium,
+    };
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, { email }, { headers: { 'Content-Type': 'application/json' } });
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, payload, { headers: { 'Content-Type': 'application/json' } });
       setMessage('✅ Success! Look for a welcome email soon!');
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({'event': 'signup_success'});
@@ -23,7 +35,7 @@ const SignupForm = () => {
     } catch (error) {
       setMessage('❌ FAILED. Check for typos and try again!');
     } finally {
-      setIsLoading(false); // Set isLoading back to false after the request has completed
+      setIsLoading(false);
     }
   };
 

@@ -151,7 +151,7 @@ app.get('/api/posts/:slug/:postId', (req, res) => {
 
 // Signup Route
 app.post('/signup', (req, res) => {
-  const { email } = req.body;
+  const { email, utm_source, utm_campaign, utm_medium } = req.body;
 
   // Make sure fields are filled.
   if (!email) {
@@ -164,9 +164,9 @@ app.post('/signup', (req, res) => {
     email: email,
     reactivate_existing: false,
     send_welcome_email: true,
-    utm_source: 'website',
-    utm_campaign: 'maxfindscars',
-    utm_medium: 'organic',
+    utm_source: utm_source,
+    utm_campaign: utm_campaign,
+    utm_medium: utm_medium,
   };
 
   request(options, (error, response, body) => {
