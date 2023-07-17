@@ -1,4 +1,5 @@
-# MaxFindsCars
+# MaxFindsCars (DEPRECATED)
+## Moved site code to github.com/maxzintel/maxfindscars-next
 
 ## Local Dev Environment Setup Directions
 
